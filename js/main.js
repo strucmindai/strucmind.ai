@@ -22,7 +22,12 @@ function toggleAudio() {
   var btn = document.getElementById('audio-toggle');
   if (!window._siteAudio) return;
   window._siteAudio.muted = !window._siteAudio.muted;
-  if (btn) btn.textContent = window._siteAudio.muted ? '🔇' : '🔊';
+  var muted = window._siteAudio.muted;
+  if (btn) {
+    btn.textContent = muted ? '🔇' : '🔊';
+    btn.setAttribute('aria-pressed', muted ? 'true' : 'false');
+    btn.setAttribute('aria-label', muted ? 'Sound is off — click to turn on' : 'Sound is on — click to turn off');
+  }
 }
 
 /* ── CURSOR ──────────────────────────────────────────────── */
@@ -135,7 +140,7 @@ function initNavScroll() {
   });
 }
 
-/* ── MOBILE MENU ─────────────────────────────────────────── */
+/* ── MOBILE MENU (Nielsen H3 control + H1 status) ────────── */
 function initMobileMenu() {
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobile-menu');
@@ -144,14 +149,40 @@ function initMobileMenu() {
   if (!hamburger || !mobileMenu) return;
 
   hamburger.addEventListener('click', function() {
-    mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open');
-    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    var willOpen = !mobileMenu.classList.contains('open');
+    if (willOpen) openMobileMenu();
+    else closeMobileMenu();
   });
 
-  if (mobileClose) {
-    mobileClose.addEventListener('click', closeMobileMenu);
+  if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
+
+  /* H3 — ESC key closes the overlay (clear emergency exit) */
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Escape') return;
+    if (mobileMenu.classList.contains('open')) closeMobileMenu();
+  });
+
+  /* Click outside menu content closes it */
+  mobileMenu.addEventListener('click', function(e) {
+    if (e.target === mobileMenu) closeMobileMenu();
+  });
+}
+
+function openMobileMenu() {
+  var mobileMenu = document.getElementById('mobile-menu');
+  var hamburger  = document.getElementById('hamburger');
+  if (!mobileMenu) return;
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden', 'false');
+  if (hamburger) {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.setAttribute('aria-label', 'Close menu');
   }
+  document.body.style.overflow = 'hidden';
+  /* Focus the close button for keyboard users */
+  var closeBtn = document.getElementById('mobile-close');
+  if (closeBtn) closeBtn.focus();
 }
 
 function closeMobileMenu() {
@@ -159,8 +190,40 @@ function closeMobileMenu() {
   var hamburger  = document.getElementById('hamburger');
   if (!mobileMenu) return;
   mobileMenu.classList.remove('open');
-  if (hamburger) hamburger.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  if (hamburger) {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open menu');
+    /* Return focus for keyboard users */
+    hamburger.focus();
+  }
   document.body.style.overflow = '';
+}
+
+/* ── ACTIVE NAV SCROLL-SPY (Nielsen H1: visibility of system status) */
+function initScrollSpy() {
+  var sections = document.querySelectorAll('section[id], div[id="hero"]');
+  if (!sections.length) return;
+
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-link[href^="#"]');
+  if (!navLinks.length) return;
+
+  function setActive(id) {
+    navLinks.forEach(function(a) {
+      var href = a.getAttribute('href');
+      if (href === '#' + id) a.classList.add('is-active');
+      else a.classList.remove('is-active');
+    });
+  }
+
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(function(s) { if (s.id) io.observe(s); });
 }
 
 /* ── GSAP SERVICES STAGGER ───────────────────────────────── */
@@ -217,36 +280,97 @@ function initFlipCards() {
   wrappers.forEach(function(w) { obs.observe(w); });
 }
 
-/* ── FORM SUBMISSION (Netlify Forms via AJAX) ────────────── */
+/* ── FORM VALIDATION + SUBMISSION (Nielsen H5 prevention, H9 error recovery) */
+function clearFieldError(field) {
+  field.removeAttribute('aria-invalid');
+  field.removeAttribute('aria-describedby');
+  var existing = field.parentNode.querySelector('.field-error');
+  if (existing) existing.remove();
+}
+
+function setFieldError(field, message) {
+  field.setAttribute('aria-invalid', 'true');
+  var existing = field.parentNode.querySelector('.field-error');
+  if (existing) existing.remove();
+  var errorId = (field.id || field.name) + '-error';
+  field.setAttribute('aria-describedby', errorId);
+  var msg = document.createElement('span');
+  msg.className = 'field-error';
+  msg.id = errorId;
+  msg.setAttribute('role', 'alert');
+  msg.textContent = message;
+  field.parentNode.appendChild(msg);
+}
+
+function validateField(field) {
+  if (field.disabled) return true;
+  if (field.required && !field.value.trim()) {
+    setFieldError(field, 'This field is required.');
+    return false;
+  }
+  if (field.type === 'email' && field.value) {
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value);
+    if (!ok) { setFieldError(field, 'Please enter a valid email address.'); return false; }
+  }
+  if (field.type === 'tel' && field.value) {
+    var digits = field.value.replace(/\D/g, '');
+    if (digits.length < 7) { setFieldError(field, 'Please enter a valid phone number.'); return false; }
+  }
+  clearFieldError(field);
+  return true;
+}
+
+function initFormLiveValidation() {
+  var form = document.getElementById('quote-form-el');
+  if (!form) return;
+  var fields = form.querySelectorAll('input, select, textarea');
+  fields.forEach(function(field) {
+    field.addEventListener('blur', function() { validateField(field); });
+    field.addEventListener('input', function() {
+      if (field.getAttribute('aria-invalid') === 'true') validateField(field);
+    });
+  });
+}
+
 function handleQuoteSubmit(e) {
   e.preventDefault();
   var form = e.target;
   var btn = form.querySelector('button[type="submit"]');
+
+  /* H5 — validate before submitting; H9 — show clear, field-level errors */
+  var fields = form.querySelectorAll('input, select, textarea');
+  var firstInvalid = null;
+  fields.forEach(function(f) {
+    if (!validateField(f) && !firstInvalid) firstInvalid = f;
+  });
+  if (firstInvalid) {
+    firstInvalid.focus();
+    showFormBanner(form, 'Please fix the highlighted fields and try again.', 'error');
+    return;
+  }
+
   btn.textContent = 'Sending...';
   btn.disabled = true;
+  btn.setAttribute('aria-busy', 'true');
 
   var data = new FormData(form);
   var encoded = new URLSearchParams(data).toString();
 
   function showSuccess() {
-    form.innerHTML = '<div style="text-align:center;padding:3rem 0">' +
+    form.innerHTML = '<div role="status" aria-live="polite" style="text-align:center;padding:3rem 0">' +
       '<div style="font-size:3rem;margin-bottom:1rem;color:#0066FF">✓</div>' +
       '<h3 style="font-family:\'Syne\',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;margin-bottom:0.75rem">Request received!</h3>' +
-      '<p style="color:rgba(255,255,255,0.45);font-size:0.9375rem">We\'ll review your details and get back to you within 24 hours.</p>' +
+      '<p style="color:rgba(255,255,255,0.45);font-size:0.9375rem;line-height:1.7">We\'ll review your details and get back to you within 24 hours.<br>If urgent, call <a href="tel:4076865270" style="color:#0066ff">407-686-5270</a>.</p>' +
       '</div>';
   }
 
   function showError(msg) {
     btn.textContent = 'Send Request →';
     btn.disabled = false;
-    var note = form.querySelector('.form-error');
-    if (!note) {
-      note = document.createElement('p');
-      note.className = 'form-error';
-      note.style.cssText = 'color:#ff4444;font-size:0.875rem;margin-top:0.75rem;text-align:center';
-      btn.parentNode.insertBefore(note, btn.nextSibling);
-    }
-    note.textContent = msg || 'Something went wrong. Please call 407-686-5270 or email contact@strucmind.ai.';
+    btn.removeAttribute('aria-busy');
+    showFormBanner(form,
+      msg || 'We could not send your request. Please try again, or contact us at 407-686-5270 / contact@strucmind.ai.',
+      'error');
   }
 
   fetch('/', {
@@ -261,18 +385,51 @@ function handleQuoteSubmit(e) {
   .catch(function() { showError(); });
 }
 
+function showFormBanner(form, text, kind) {
+  var existing = form.querySelector('.form-banner');
+  if (existing) existing.remove();
+  var banner = document.createElement('div');
+  banner.className = 'form-banner';
+  banner.setAttribute('role', kind === 'error' ? 'alert' : 'status');
+  banner.style.cssText = 'margin-top:1rem;padding:0.85rem 1rem;border-radius:6px;font-size:0.875rem;text-align:center;' +
+    (kind === 'error'
+      ? 'background:rgba(255,68,68,0.08);border:1px solid rgba(255,68,68,0.3);color:#ffb0b0;'
+      : 'background:rgba(0,102,255,0.08);border:1px solid rgba(0,102,255,0.3);color:#cfe0ff;');
+  banner.textContent = text;
+  var btn = form.querySelector('button[type="submit"]');
+  if (btn) btn.parentNode.insertBefore(banner, btn.nextSibling);
+  else form.appendChild(banner);
+}
+
 /* ── INIT ────────────────────────────────────────────────── */
-document.body.style.overflow = 'hidden';
+/* H3 — User control: only lock scroll if motion is allowed AND user
+   hasn't already entered. Reduced-motion users skip the gate entirely. */
+var prefersReducedMotion = window.matchMedia &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReducedMotion && !sessionStorage.getItem('sm_entered')) {
+  document.body.style.overflow = 'hidden';
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  initEnterGate();
+  /* For reduced-motion users: skip the enter gate entirely */
+  if (prefersReducedMotion) {
+    var gate = document.getElementById('enter-gate');
+    if (gate) gate.style.display = 'none';
+    sessionStorage.setItem('sm_entered', 'true');
+    document.body.style.overflow = '';
+  } else {
+    initEnterGate();
+  }
+
   initCursor();
   initNavScroll();
   initMobileMenu();
+  initScrollSpy();
+  initFormLiveValidation();
   initHeroScene();
   initScrollReveal();
   initCounters();

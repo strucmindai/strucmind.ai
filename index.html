@@ -65,7 +65,7 @@
           referrerpolicy="no-referrer"></script>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 
   <!-- JSON-LD: ProfessionalService -->
   <script type="application/ld+json">
@@ -200,6 +200,9 @@
 </head>
 <body>
 
+  <!-- Skip to main content (Nielsen H7: flexibility / keyboard a11y) -->
+  <a href="#hero" class="skip-link">Skip to main content</a>
+
   <!-- Noscript fallback (crawlers + JS-disabled users) -->
   <noscript>
     <style>
@@ -281,11 +284,22 @@
           <li><a href="#faq">FAQ</a></li>
         </ul>
         <div class="nav-right">
-          <button class="audio-toggle" id="audio-toggle" onclick="toggleAudio()" title="Toggle sound">🔊</button>
-          <a href="https://calendly.com/contact-strucmind/30min" target="_blank" class="btn-primary">
+          <button class="audio-toggle"
+                  id="audio-toggle"
+                  type="button"
+                  onclick="toggleAudio()"
+                  aria-label="Toggle background sound"
+                  aria-pressed="false"
+                  title="Toggle sound">🔊</button>
+          <a href="https://calendly.com/contact-strucmind/30min" target="_blank" rel="noopener" class="btn-primary">
             Book a Call →
           </a>
-          <button class="hamburger" id="hamburger" aria-label="Menu">
+          <button class="hamburger"
+                  id="hamburger"
+                  type="button"
+                  aria-label="Open menu"
+                  aria-controls="mobile-menu"
+                  aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </div>
@@ -294,15 +308,24 @@
   </nav>
 
   <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu" id="mobile-menu">
-    <button class="mobile-menu-close" id="mobile-close">✕</button>
-    <nav class="mobile-nav">
+  <div class="mobile-menu"
+       id="mobile-menu"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Main navigation"
+       aria-hidden="true">
+    <button class="mobile-menu-close"
+            id="mobile-close"
+            type="button"
+            aria-label="Close menu">✕</button>
+    <nav class="mobile-nav" aria-label="Mobile">
       <a href="#services" class="mobile-link">Services</a>
       <a href="#how-it-works" class="mobile-link">How It Works</a>
       <a href="#results" class="mobile-link">Results</a>
       <a href="#pricing" class="mobile-link">Pricing</a>
       <a href="#about" class="mobile-link">About</a>
-      <a href="https://calendly.com/contact-strucmind/30min" target="_blank" class="btn-primary" style="margin-top:1.5rem;text-align:center;justify-content:center">Book a Call →</a>
+      <a href="#faq" class="mobile-link">FAQ</a>
+      <a href="https://calendly.com/contact-strucmind/30min" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1.5rem;text-align:center;justify-content:center">Book a Call →</a>
     </nav>
   </div>
 
@@ -1173,28 +1196,28 @@
             </p>
             <div class="form-row">
               <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" name="name" required placeholder="Jane Smith">
+                <label for="qf-name">Full Name *</label>
+                <input id="qf-name" type="text" name="name" required autocomplete="name" placeholder="Jane Smith" aria-required="true">
               </div>
               <div class="form-group">
-                <label>Business Name *</label>
-                <input type="text" name="business" required placeholder="Acme Law Group">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Email *</label>
-                <input type="email" name="email" required placeholder="jane@acmelaw.com">
-              </div>
-              <div class="form-group">
-                <label>Phone</label>
-                <input type="tel" name="phone" placeholder="(407) 000-0000">
+                <label for="qf-business">Business Name *</label>
+                <input id="qf-business" type="text" name="business" required autocomplete="organization" placeholder="Acme Law Group" aria-required="true">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group">
-                <label>Industry *</label>
-                <select name="industry" required>
+                <label for="qf-email">Email *</label>
+                <input id="qf-email" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="jane@acmelaw.com" aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="qf-phone">Phone</label>
+                <input id="qf-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="(407) 000-0000">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="qf-industry">Industry *</label>
+                <select id="qf-industry" name="industry" required aria-required="true">
                   <option value="">Select your industry</option>
                   <option>Law Firm</option>
                   <option>Medical / Dental</option>
@@ -1212,8 +1235,8 @@
                 </select>
               </div>
               <div class="form-group">
-                <label>Tier of Interest</label>
-                <select name="tier">
+                <label for="qf-tier">Tier of Interest</label>
+                <select id="qf-tier" name="tier">
                   <option value="">Not sure yet</option>
                   <option>Starter — Tier 1</option>
                   <option>Growth — Tier 2</option>
@@ -1222,8 +1245,8 @@
               </div>
             </div>
             <div class="form-group full">
-              <label>What's your biggest operational challenge?</label>
-              <textarea name="challenge" rows="4"
+              <label for="qf-challenge">What's your biggest operational challenge?</label>
+              <textarea id="qf-challenge" name="challenge" rows="4"
                 placeholder="e.g. We miss too many after-hours calls and lose leads to competitors..."></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width:100%;justify-content:center">
@@ -1391,9 +1414,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script defer src="js/three-scenes.js?v=5"></script>
-  <script defer src="js/animations.js?v=5"></script>
-  <script defer src="js/main.js?v=5"></script>
+  <script defer src="js/three-scenes.js?v=6"></script>
+  <script defer src="js/animations.js?v=6"></script>
+  <script defer src="js/main.js?v=6"></script>
 
 </body>
 </html>

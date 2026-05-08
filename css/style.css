@@ -44,9 +44,120 @@ body {
 .cursor-dot.expand { width:12px; height:12px; }
 .cursor-ring.expand { width:56px; height:56px; opacity:0.4; }
 
-@media (hover:none) {
+@media (hover:none), (pointer:coarse) {
   .cursor-dot, .cursor-ring { display:none; }
   body { cursor:auto; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NIELSEN HEURISTICS — UX & ACCESSIBILITY POLISH
+   H1 visibility · H3 user control · H4 consistency
+   H6 recognition · H7 flexibility · H8 minimalism
+══════════════════════════════════════════════════════════════ */
+
+/* H7 — Skip link for keyboard users (visible only on focus) */
+.skip-link {
+  position:absolute;
+  top:-100px; left:1rem;
+  background:var(--blue);
+  color:#fff;
+  padding:0.85rem 1.5rem;
+  border-radius:6px;
+  font-family:var(--font-body); font-weight:500;
+  font-size:0.9375rem;
+  text-decoration:none;
+  z-index:100000;
+  transition:top 0.2s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  top:1rem;
+  outline:2px solid #fff;
+  outline-offset:2px;
+}
+
+/* H1 / H6 — Visible focus indicator for keyboard users */
+:focus { outline:none; }
+:focus-visible {
+  outline:2px solid var(--blue);
+  outline-offset:3px;
+  border-radius:4px;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline:2px solid var(--blue);
+  outline-offset:3px;
+  box-shadow:0 0 0 4px rgba(0,102,255,0.18);
+}
+
+/* H1 — Active nav link (scroll-spy target) */
+.nav-links a.is-active,
+.mobile-link.is-active {
+  color:#fff;
+}
+.nav-links a.is-active::after {
+  content:"";
+  display:block;
+  height:2px;
+  margin-top:6px;
+  background:var(--blue);
+  border-radius:2px;
+  animation:active-nav-in 0.3s ease;
+}
+@keyframes active-nav-in {
+  from { transform:scaleX(0); opacity:0; }
+  to   { transform:scaleX(1); opacity:1; }
+}
+
+/* H4 — Form invalid state (consistency: same red across all fields) */
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color:#ff4444 !important;
+  box-shadow:0 0 0 3px rgba(255,68,68,0.15);
+}
+.field-error {
+  display:block;
+  color:#ff6b6b;
+  font-size:0.8125rem;
+  font-weight:400;
+  margin-top:0.4rem;
+  font-family:var(--font-body);
+}
+
+/* H7 — Reduced motion: disable all decorative animation
+   for users with vestibular sensitivity */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior:auto !important; }
+  /* Hide decorative-only canvases — they distract without animation */
+  #hero-three-canvas,
+  #orbit-canvas,
+  #final-cta-canvas,
+  .hero-bg-image { display:none !important; }
+  /* Make everything visible immediately, no scroll-in fades */
+  .reveal { opacity:1 !important; transform:none !important; }
+  .flip-card-wrapper { opacity:1 !important; transform:none !important; }
+  /* Replace custom cursor with default */
+  .cursor-dot, .cursor-ring { display:none !important; }
+  body { cursor:auto !important; }
+}
+
+/* H3 — User control: prevent body lock from breaking site
+   if JS fails to remove overflow:hidden on enter-gate dismissal */
+@media (prefers-reduced-motion: reduce) {
+  body { overflow:auto !important; }
 }
 
 /* ── SCROLLBAR ─────────────────────────────────────────────── */
