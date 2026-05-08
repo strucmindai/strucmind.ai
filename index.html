@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strucmind.ai — Structured Intelligence | AI Automation Agency</title>
-  <meta name="description" content="AI automation agency building custom AI systems that automate your entire operation — from lead capture and client communication to internal workflows and decision-making.">
+  <title>AI Automation Agency for Operations | Strucmind.ai</title>
+  <meta name="description" content="Custom AI systems that automate lead capture, client comms, and internal workflows. Built by engineers. Book a free strategy call →">
+  <meta name="keywords" content="AI automation agency, custom AI systems, business automation, lead capture automation, AI workflow automation, AI agents, AI consulting">
+  <meta name="author" content="Strucmind.ai">
   <meta name="theme-color" content="#000000">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://strucmind.ai/">
 
   <!-- Favicon -->
@@ -42,41 +45,185 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Three.js (SRI verified) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+  <!-- Three.js (deferred + SRI verified) -->
+  <script defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
           integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu"
           crossorigin="anonymous"
           referrerpolicy="no-referrer"></script>
 
-  <!-- GSAP (SRI verified) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+  <!-- GSAP (deferred + SRI verified) -->
+  <script defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
           integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS"
           crossorigin="anonymous"
           referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+  <script defer
+          src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
           integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE"
           crossorigin="anonymous"
           referrerpolicy="no-referrer"></script>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 
-  <!-- JSON-LD structured data -->
+  <!-- JSON-LD: ProfessionalService -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "ProfessionalService",
+    "@id": "https://strucmind.ai/#organization",
     "name": "Strucmind.ai",
+    "alternateName": "Strucmind",
     "url": "https://strucmind.ai",
-    "logo": "https://strucmind.ai/assets/logo.png",
-    "description": "AI automation agency building custom AI systems that automate your entire operation.",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://strucmind.ai/assets/icon-512.png",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://strucmind.ai/assets/og-image.jpg",
+    "description": "AI automation agency building custom AI systems that automate lead capture, client communication, internal workflows, and decision-making for businesses.",
+    "slogan": "Structured Intelligence — Built by engineers. Driven by results.",
     "telephone": "+1-407-686-5270",
     "email": "contact@strucmind.ai",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": [
+      { "@type": "Country", "name": "United States" },
+      { "@type": "Place", "name": "Worldwide (remote)" }
+    ],
+    "serviceType": [
+      "AI Automation",
+      "Workflow Automation",
+      "AI Agents",
+      "Custom Chatbots",
+      "Data Pipelines"
+    ],
+    "knowsAbout": [
+      "AI automation",
+      "Business process automation",
+      "Lead capture automation",
+      "AI agents",
+      "Custom AI systems",
+      "Workflow automation"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI Automation Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Workflow Automation",  "description": "Automate repetitive operational tasks across departments." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Agents",            "description": "Custom AI agents that handle communication and decision-making." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Data Pipelines",       "description": "Automated data flow and analytics pipelines for any business stack." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Chatbots",      "description": "Branded conversational AI for support, sales, and lead qualification." } }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-407-686-5270",
+      "email": "contact@strucmind.ai",
+      "contactType": "sales",
+      "areaServed": "US",
+      "availableLanguage": ["English", "Spanish"]
+    },
     "sameAs": []
+  }
+  </script>
+
+  <!-- JSON-LD: WebSite (sitelinks search box) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://strucmind.ai/#website",
+    "url": "https://strucmind.ai/",
+    "name": "Strucmind.ai",
+    "description": "AI automation agency — custom AI systems that automate your entire operation.",
+    "publisher": { "@id": "https://strucmind.ai/#organization" },
+    "inLanguage": "en-US"
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage (rich snippets in SERP) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does an AI automation agency do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We design and build custom AI systems that automate your entire operation — from lead capture and client communication to internal workflows and decision-making. Unlike generic SaaS tools, every system is engineered around how your business actually runs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take to build a custom AI automation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most projects launch within 2 to 6 weeks depending on scope. We start with a discovery call, design the system, build and integrate it with your existing tools, and then optimize until it performs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which industries do you work with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We've built AI automation for real estate, ecommerce, healthcare, legal, recruiting, finance, SaaS, construction, marketing, logistics, insurance, education, and hospitality businesses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you sell pre-made AI templates or off-the-shelf tools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Every Strucmind system is custom-built for the client. We work with a limited number of businesses at a time so each solution gets engineering-grade attention."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does AI automation cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pricing depends on scope and complexity. We offer three tiers — Starter, Growth, and Full Automation — and provide transparent quotes after a free strategy call."
+        }
+      }
+    ]
   }
   </script>
 </head>
 <body>
+
+  <!-- Noscript fallback (crawlers + JS-disabled users) -->
+  <noscript>
+    <style>
+      .noscript-banner { position:fixed; inset:0; background:#000; color:#fff; z-index:99999; display:flex; align-items:center; justify-content:center; padding:2rem; font-family:'DM Sans', sans-serif; }
+      .noscript-banner > div { max-width:560px; text-align:center; }
+      .noscript-banner h2 { font-family:'Syne', sans-serif; font-size:2rem; margin-bottom:1rem; }
+      .noscript-banner p { color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:1.5rem; }
+      .noscript-banner a { color:#0066ff; text-decoration:underline; }
+      .noscript-banner .ctas { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+      .noscript-banner .btn { background:#0066ff; color:#fff; padding:0.85rem 1.5rem; border-radius:6px; text-decoration:none; font-weight:500; }
+    </style>
+    <div class="noscript-banner">
+      <div>
+        <h2>Strucmind.ai — AI Automation Agency</h2>
+        <p>We build custom AI systems that automate your entire operation — from lead capture and client communication to internal workflows and decision-making. Built by engineers. Driven by results.</p>
+        <p>This site uses JavaScript for an interactive experience. To continue, enable JavaScript or contact us directly:</p>
+        <div class="ctas">
+          <a class="btn" href="https://calendly.com/contact-strucmind/30min">Book a Free Strategy Call</a>
+          <a href="tel:4076865270">407-686-5270</a>
+          <a href="mailto:contact@strucmind.ai">contact@strucmind.ai</a>
+        </div>
+      </div>
+    </div>
+  </noscript>
 
   <!-- Custom Cursor -->
   <div class="cursor-dot"></div>
@@ -86,7 +233,7 @@
   <div id="enter-gate">
     <div id="enter-logo-canvas"></div>
     <div class="enter-content">
-      <h1 class="enter-wordmark">strucmind<span>.ai</span></h1>
+      <p class="enter-wordmark" role="heading" aria-level="2">strucmind<span>.ai</span></p>
       <p class="enter-tagline">Structured Intelligence</p>
       <button id="enter-btn">
         <span>Enter Experience</span>
@@ -131,6 +278,7 @@
           <li><a href="#results">Results</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#about">About</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
         <div class="nav-right">
           <button class="audio-toggle" id="audio-toggle" onclick="toggleAudio()" title="Toggle sound">🔊</button>
@@ -452,7 +600,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 1.webp" alt="Real Estate" class="flip-card__img">
+                <img src="assets/industries/real-estate.webp" alt="AI automation dashboard for real estate firms — lead routing and client follow-up" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -482,7 +630,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 2.webp" alt="E-Commerce" class="flip-card__img">
+                <img src="assets/industries/ecommerce.webp" alt="AI automation for ecommerce — order tracking, support, and customer recovery" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -512,7 +660,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 3.webp" alt="Healthcare" class="flip-card__img">
+                <img src="assets/industries/healthcare.webp" alt="AI automation for healthcare clinics — patient intake and appointment scheduling" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -542,7 +690,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 4.webp" alt="Legal" class="flip-card__img">
+                <img src="assets/industries/legal.webp" alt="AI automation for law firms — case intake, document workflow, and client communication" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -572,7 +720,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 5.webp" alt="Recruiting" class="flip-card__img">
+                <img src="assets/industries/recruiting.webp" alt="AI automation for recruiting agencies — candidate screening and pipeline management" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -602,7 +750,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 6.webp" alt="Finance" class="flip-card__img">
+                <img src="assets/industries/finance.webp" alt="AI automation for financial advisors — client onboarding and reporting workflow" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -632,7 +780,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 7.webp" alt="SaaS" class="flip-card__img">
+                <img src="assets/industries/saas.webp" alt="AI automation for SaaS companies — user onboarding, retention, and support" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -662,7 +810,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 8.webp" alt="Construction" class="flip-card__img">
+                <img src="assets/industries/construction.webp" alt="AI automation for construction firms — project quoting, scheduling, and client updates" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -692,7 +840,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 9.webp" alt="Marketing" class="flip-card__img">
+                <img src="assets/industries/marketing.webp" alt="AI automation for marketing agencies — reporting, lead nurture, and campaign workflows" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -722,7 +870,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 10.webp" alt="Logistics" class="flip-card__img">
+                <img src="assets/industries/logistics.webp" alt="AI automation for logistics — shipment tracking, dispatch, and customer notifications" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -752,7 +900,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 11.webp" alt="Insurance" class="flip-card__img">
+                <img src="assets/industries/insurance.webp" alt="AI automation for insurance brokers — quoting, claims intake, and renewals" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -782,7 +930,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 12.webp" alt="Education" class="flip-card__img">
+                <img src="assets/industries/education.webp" alt="AI automation for education providers — enrollment, student support, and operations" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -812,7 +960,7 @@
           <div class="flip-card">
             <div class="flip-card__front">
               <div class="flip-card__img-wrap">
-                <img src="prev/preview 13.webp" alt="Hospitality" class="flip-card__img">
+                <img src="assets/industries/hospitality.webp" alt="AI automation for hospitality — bookings, guest comms, and operations workflow" class="flip-card__img" loading="lazy" width="400" height="300">
                 <div class="flip-card__img-overlay"></div>
               </div>
               <div class="flip-card__front-body">
@@ -1150,6 +1298,41 @@
     </div>
   </section>
 
+  <!-- ── FAQ ───────────────────────────────────────────────── -->
+  <section id="faq">
+    <div class="container">
+      <span class="section-label reveal">FAQ</span>
+      <h2 class="section-title reveal">Common questions, answered.</h2>
+
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>What does an AI automation agency do?</summary>
+          <p>We design and build custom AI systems that automate your entire operation — from lead capture and client communication to internal workflows and decision-making. Unlike generic SaaS tools, every system is engineered around how your business actually runs.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>How long does it take to build a custom AI automation?</summary>
+          <p>Most projects launch within 2 to 6 weeks depending on scope. We start with a discovery call, design the system, build and integrate it with your existing tools, and then optimize until it performs.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Which industries do you work with?</summary>
+          <p>We've built AI automation for real estate, ecommerce, healthcare, legal, recruiting, finance, SaaS, construction, marketing, logistics, insurance, education, and hospitality businesses.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>Do you sell pre-made AI templates or off-the-shelf tools?</summary>
+          <p>No. Every Strucmind system is custom-built for the client. We work with a limited number of businesses at a time so each solution gets engineering-grade attention.</p>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary>How much does AI automation cost?</summary>
+          <p>Pricing depends on scope and complexity. We offer three tiers — Starter, Growth, and Full Automation — and provide transparent quotes after a free strategy call.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <!-- ── FINAL CTA ─────────────────────────────────────────── -->
   <section id="final-cta">
     <div id="final-cta-canvas"></div>
@@ -1190,6 +1373,7 @@
           <a href="#results">Results</a>
           <a href="#pricing">Pricing</a>
           <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
         </div>
         <div class="footer-contact">
           <a href="https://calendly.com/contact-strucmind/30min" target="_blank" class="btn-primary" style="font-size:0.875rem;padding:0.75rem 1.5rem">
@@ -1207,9 +1391,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/three-scenes.js?v=4"></script>
-  <script src="js/animations.js?v=4"></script>
-  <script src="js/main.js?v=4"></script>
+  <script defer src="js/three-scenes.js?v=5"></script>
+  <script defer src="js/animations.js?v=5"></script>
+  <script defer src="js/main.js?v=5"></script>
 
 </body>
 </html>

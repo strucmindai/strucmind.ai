@@ -26,5 +26,8 @@ build/
 node_modules/
 
 # Backups
-prev/
 *.bak
+
+# Audit kits / dev-only scratch
+kit-*/
+audit-*/
