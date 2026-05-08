@@ -339,6 +339,27 @@ p.section-sub {
 .nav-right {
   display:flex; align-items:center; gap:1rem;
 }
+/* Compact nav CTA on tablets and phones */
+@media (max-width:1024px) {
+  .nav-right { gap:0.6rem; }
+  .nav-right .btn-primary {
+    padding:0.55rem 1rem;
+    font-size:0.8125rem;
+    gap:0.35rem;
+    letter-spacing:0;
+  }
+}
+@media (max-width:480px) {
+  .nav-right .btn-primary {
+    padding:0.5rem 0.85rem;
+    font-size:0.75rem;
+    border-radius:3px;
+  }
+  /* Hide the arrow on tiny screens to save space */
+  .nav-right .btn-primary::after {
+    content:none;
+  }
+}
 .audio-toggle {
   background:none; border:none; cursor:pointer;
   font-size:1rem; opacity:0.5; transition:opacity 0.2s;
