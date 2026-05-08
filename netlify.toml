@@ -1,11 +1,8 @@
 [build]
   publish = "."
 
-# SPA-style fallback (single page) — keep last among redirects
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Note: 404.html at the root is served automatically by Netlify
+# for any unmatched URL with proper 404 status — no SPA fallback needed.
 
 # ── Security headers (apply to every response) ──────────────
 [[headers]]

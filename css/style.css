@@ -559,11 +559,11 @@ p.section-sub {
   background-position: center;
 }
 .ba-before {
-  background-image: url('../assets/chaos-desk.png');
+  background-image: url('../assets/chaos-desk.webp');
   filter: saturate(0) brightness(0.45);
 }
 .ba-after {
-  background-image: url('../assets/order-desk.png');
+  background-image: url('../assets/order-desk.webp');
   filter: hue-rotate(200deg) saturate(1.2) brightness(0.75);
   clip-path: inset(0 0 0 50%);
 }
@@ -1447,3 +1447,62 @@ p.section-sub {
 @media (max-width: 1200px) { .flip-cards-grid { grid-template-columns: repeat(3,1fr); } }
 @media (max-width: 900px)  { .flip-cards-grid { grid-template-columns: repeat(2,1fr); } .flip-card-wrapper { height: 300px; } }
 @media (max-width: 480px)  { .flip-cards-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; } .flip-card-wrapper { height: 260px; } }
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE POLISH — global fixes for tablets and phones
+══════════════════════════════════════════════════════════════ */
+@media (max-width:1024px) {
+  #services { padding:5rem 0; }
+  .ba-wrap { height:360px; }
+}
+
+@media (max-width:768px) {
+  /* Section spacing */
+  #services { padding:4rem 0; }
+  .industries-header { margin-bottom:2rem; }
+  .industries-title { font-size:clamp(2rem, 8vw, 3rem); line-height:1.05; }
+  .ticker-outer { margin-bottom:2rem; }
+
+  /* Before/After slider — keep visible but smaller */
+  .ba-wrap { height:280px; margin-top:2rem; }
+
+  /* Nav dropdown — never overflow viewport on mobile */
+  .nav-dropdown { display:none; }
+
+  /* Pricing — already 1fr at 1024px, but ensure inner padding shrinks */
+  .pricing-card { padding:2rem 1.5rem !important; }
+
+  /* Form inner — shrink padding */
+  .quote-form-inner { padding:2rem 1.25rem; }
+
+  /* Final CTA */
+  #final-cta { padding:5rem 0; }
+  .final-cta-content h2 { font-size:clamp(2rem, 7vw, 3rem) !important; }
+
+  /* Footer alignment */
+  .footer-brand { text-align:center; margin:0 auto; }
+  .footer-links, .footer-contact { text-align:center; align-items:center; }
+  .footer-links a, .footer-contact a { display:block; margin:0 auto; }
+
+  /* Problem cards — visuals shouldn't dwarf the text */
+  .problem-card__image { aspect-ratio:16/9; }
+}
+
+@media (max-width:480px) {
+  /* Tighter gutters on small phones */
+  .container { padding:0 1.25rem; }
+
+  /* Hero text */
+  .hero-headline { font-size:clamp(2.25rem, 9vw, 3rem); }
+  .hero-sub { font-size:0.95rem; }
+  .hero-bg-image { opacity:0.05; }
+
+  /* Section titles never exceed viewport */
+  .section-title { font-size:clamp(1.75rem, 7vw, 2.5rem); }
+
+  /* Before/After slider — even more compact */
+  .ba-wrap { height:220px; }
+
+  /* Nav logo wordmark — tighten */
+  .nav-logo span { font-size:0.95rem; }
+}
