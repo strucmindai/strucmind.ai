@@ -1,77 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page Not Found — Strucmind.ai</title>
-  <meta name="robots" content="noindex">
-  <link rel="icon" href="/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      height: 100%; background: #000; color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 2rem;
-      overflow: hidden;
-    }
-    .glow {
-      position: fixed; top: 50%; left: 50%;
-      width: 600px; height: 600px;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(0,102,255,0.15) 0%, transparent 60%);
-      pointer-events: none;
-      animation: pulse 4s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-    }
-    .wrap { position: relative; z-index: 1; max-width: 540px; }
-    .code {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(6rem, 18vw, 12rem); line-height: 1;
-      background: linear-gradient(135deg, #fff 0%, #0066ff 100%);
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.04em;
-    }
-    h1 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      margin: 1rem 0 1rem;
-    }
-    p {
-      color: rgba(255,255,255,0.55);
-      font-weight: 300; font-size: 1rem;
-      line-height: 1.6; margin-bottom: 2.5rem;
-    }
-    a.btn {
-      display: inline-block;
-      background: #0066ff; color: #fff;
-      padding: 0.85rem 1.75rem; border-radius: 6px;
-      font-weight: 500; font-size: 0.95rem;
-      text-decoration: none;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-    a.btn:hover { background: #0052cc; transform: translateY(-2px); }
-    .label {
-      display: inline-block;
-      font-size: 0.6875rem; font-weight: 500;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: #0066ff; margin-bottom: 1rem;
-    }
-  </style>
-</head>
-<body>
-  <div class="glow"></div>
-  <div class="wrap">
-    <span class="label">Error 404</span>
-    <div class="code">404</div>
-    <h1>Page not found.</h1>
-    <p>The page you're looking for doesn't exist — or it moved. Let's get you back on track.</p>
-    <a class="btn" href="/">← Back to home</a>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>404 — Page Not Found · Strucmind.ai</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0B0E1A;
+        color: #FFFFFF;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        text-align: center;
+      }
+      .wrap { padding: 2rem; }
+      h1 { font-size: 4rem; margin: 0 0 0.5rem; letter-spacing: -0.03em; }
+      h1 span { color: #0066FF; }
+      p { color: #8892A4; font-size: 1.0625rem; margin: 0 0 2rem; }
+      a {
+        display: inline-block;
+        padding: 0.8125rem 1.875rem;
+        background: linear-gradient(120deg, #0066FF 0%, #2563EB 100%);
+        color: #FFFFFF;
+        font-weight: 600;
+        border-radius: 0.625rem;
+        text-decoration: none;
+        box-shadow: 0 0 24px rgba(0, 102, 255, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>4<span>0</span>4</h1>
+      <p>This page doesn't exist — but your AI receptionist always answers.</p>
+      <a href="/">Back to Home</a>
+    </div>
+  </body>
 </html>

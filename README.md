@@ -1,35 +1,42 @@
-# Strucmind.ai Website
+# Strucmind.ai Website (production deploy)
 
-## Setup
-No installation required. Open `index.html` in any browser.
+This repo holds the **built, static production site** served at https://strucmind.ai
+via Netlify (auto-deploys on every push to `main`).
 
-## Adding Images
-Place the following files in the `assets/` folder:
-- `logo.png` — Strucmind logo (geodesic dome + cloud, dark background)
-- `hero-bg.png` — Glowing neural network on black background
-- `chaos-desk.png` — Overwhelmed desk with red alert notifications
-- `order-desk.png` — Clean organized desk with green checkmarks
-- `about-bg.png` — Circuit board from above, dark blue atmospheric
+## Source code
 
-Place industry icons in `assets/icons/`:
-`law.png`, `medical.png`, `engineering.png`, `financial.png`, `hvac.png`,
-`property.png`, `restaurant.png`, `gym.png`, `salon.png`, `auto.png`,
-`vet.png`, `custom-ai.png`, `ai-decision.png`
+Do NOT edit `index.html` or anything in `assets/` by hand — they are build
+artifacts. The actual source lives in the
+[strucmind-website](https://github.com/strucmindai/strucmind-website) repo
+(React + Vite + Tailwind).
 
-> The site works without images — emoji fallbacks are shown for icons.
+## Publishing a new version
 
-## Adding Music
-1. `audio/ambient.mp3` is already included.
-2. If you want a different track: download from pixabay.com/music
-   (search "dark cinematic ambient" — no lyrics, no drums)
-3. Save as `audio/ambient.mp3`
+```sh
+# in the strucmind-website repo
+pnpm install
+pnpm run build        # outputs to dist/public
 
-## Deployment
-1. Drag the entire `strucmind-final/` folder to app.netlify.com
-2. Connect your `strucmind.ai` domain in Netlify → Domain Settings
-3. Update nameservers in GoDaddy to Netlify's provided nameservers
+# copy dist/public contents into this repo (keep robots.txt, sitemap.xml,
+# 404.html, netlify.toml and the google*.html verification file), then:
+git add -A && git commit -m "deploy: <description>" && git push
+```
+
+## Files that belong to THIS repo (not the build)
+
+- `netlify.toml` — security headers + caching
+- `robots.txt`, `sitemap.xml` — SEO (update `lastmod` when deploying)
+- `404.html` — self-contained not-found page
+- `google4535a08b6834a1fb.html` — Google Search Console verification
+
+## Forms
+
+The quote form posts to **Netlify Forms** (form name: `quote-request`).
+Form detection must be enabled in Netlify → Site configuration → Forms,
+and submissions appear in the Netlify dashboard under Forms.
 
 ## Contact
+
 - Phone: 407-686-5270
 - Email: contact@strucmind.ai
 - Booking: calendly.com/contact-strucmind/30min
