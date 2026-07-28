@@ -4,25 +4,44 @@
 # Note: 404.html at the root is served automatically by Netlify
 # for any unmatched URL with proper 404 status — no SPA fallback needed.
 
-# ── Client-side routes ──────────────────────────────────────
-# The site is a single-page app: these paths have no file on disk and must
-# be rewritten to index.html so the router can render them. Listed one by
-# one rather than a /* catch-all so that genuinely unknown URLs still get
-# 404.html with a real 404 status.
+# ── Legal pages (prerendered) ───────────────────────────────
+# These routes are prerendered to real HTML at build time so that crawlers
+# which do not execute JavaScript — such as facebookexternalhit, used by Meta
+# for business verification and App Review — receive the full document. Serve
+# the prerendered file rather than the SPA shell. No /* catch-all, so unknown
+# URLs still get 404.html with a real 404 status.
 [[redirects]]
   from = "/privacy"
-  to = "/index.html"
+  to = "/privacy.html"
   status = 200
 
 [[redirects]]
   from = "/terms"
-  to = "/index.html"
+  to = "/terms.html"
   status = 200
 
 [[redirects]]
   from = "/data-deletion"
-  to = "/index.html"
+  to = "/data-deletion.html"
   status = 200
+
+# Send the underlying .html paths to the canonical URL. Without this they are
+# reachable directly, and the router would then see "/privacy.html", match no
+# route and render the 404 page over the prerendered content.
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/terms"
+  status = 301
+
+[[redirects]]
+  from = "/data-deletion.html"
+  to = "/data-deletion"
+  status = 301
 
 # ── Security headers (apply to every response) ──────────────
 [[headers]]
