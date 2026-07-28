@@ -32,16 +32,19 @@
   from = "/privacy.html"
   to = "/privacy"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/terms.html"
   to = "/terms"
   status = 301
+  force = true
 
 [[redirects]]
   from = "/data-deletion.html"
   to = "/data-deletion"
   status = 301
+  force = true
 
 # ── Security headers (apply to every response) ──────────────
 [[headers]]
